@@ -1,0 +1,7 @@
+Username: jack
+Age: 18
+Phone Number: 1234567
+Address: jack@gamil.com
+Email: new york
+Password: 123456789
+
