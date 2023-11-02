@@ -25,10 +25,10 @@ public class Doctors_Panel extends JFrame implements ActionListener {
     private JLabel label1, nameLabel, ageLabel, phoneLabel, medicineLabel, diseaseLabel, notificationLabel;
     private JTextField nameField, ageField, phoneField;
     private JTextArea medicineTextArea, diseaseTextArea, notificationTextArea;
-    private JButton confirmbutton, clearbutton, optionbutton,refreshbutton;
+    private JButton confirmbutton, clearbutton, optionbutton,refreshbutton,logbutton;
     private Font f, f2, f3;
     private Cursor cursor;
-    private ImageIcon icon, icon2,icon3;
+    private ImageIcon icon, icon2,icon3,icon4;
     private String lastPatientInfo = ""; 
     private JScrollPane medicineScrollPane,diseaseScrollPane,notificationScrollPane;
 
@@ -55,6 +55,7 @@ public class Doctors_Panel extends JFrame implements ActionListener {
 
         icon2 = new ImageIcon(getClass().getResource("menu.png"));
         icon3 = new ImageIcon(getClass().getResource("reload.png"));
+        icon4 = new ImageIcon(getClass().getResource("power-button.png"));
 
         // Fonts
         f = new Font("Arial", Font.CENTER_BASELINE, 22);
@@ -184,6 +185,15 @@ public class Doctors_Panel extends JFrame implements ActionListener {
         refreshbutton.setBounds(50, 10, 30, 28);
         refreshbutton.addActionListener(this);
         c.add(refreshbutton);
+        
+        logbutton = new JButton(icon4);
+        logbutton.setCursor(cursor);
+        logbutton.setOpaque(true);
+        logbutton.setBackground(Color.blue);
+        logbutton.setToolTipText("Click to log out");
+        logbutton.setBounds(800, 5, 30, 28);
+        logbutton.addActionListener(this);
+        c.add(logbutton);
 
         // scroll bars
         medicineScrollPane = new JScrollPane(medicineTextArea,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -201,6 +211,7 @@ public class Doctors_Panel extends JFrame implements ActionListener {
         confirmbutton.addActionListener(this);
         clearbutton.addActionListener(this);
         optionbutton.addActionListener(this);
+        logbutton.addActionListener(this);
     }
 
    private void updatePatientInfoFromTextFile() {
@@ -321,12 +332,23 @@ public class Doctors_Panel extends JFrame implements ActionListener {
         p.setTitle("Doctor's Panel");
         p.setResizable(false);
         }
+        else if (e.getSource()==logbutton){
+            
+            dispose();
+            
+            Doctors_login ln = new Doctors_login();
+            ln.setVisible(true);
+            ln.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            ln.setBounds(400, 100, 850, 550);
+            ln.setTitle(" Doctors Log in");
+            ln.setResizable(false);
+        }
     }
 
     public static void main(String[] args) {
         Doctors_Panel p = new Doctors_Panel();
         p.setVisible(true);
-        p.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p.setBounds(400, 100, 850, 550);
         p.setTitle("Doctor's Panel");
         p.setResizable(false);

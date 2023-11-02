@@ -211,24 +211,24 @@ public class MainFrame extends JFrame  implements ActionListener{
         newItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Delete the content of successful_logins.txt
+               
                 try {
                     
                     File file = new File("successful_logins.txt");
                     if (file.exists()) {
                         PrintWriter writer = new PrintWriter(file);
-                        writer.print(""); // Clear the file
+                        writer.print(""); 
                         writer.close();
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
-                    // Handle any potential exceptions here
+                    
                 }
 
-                // Close the current JFrame
+                
                 dispose();
 
-                // Open the Login window
+               
                 Login ln = new Login();
                 ln.setVisible(true);
                 ln.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
